@@ -12,7 +12,7 @@ from scrapy.commands import ScrapyCommand
 from scrapy.utils.template import render_templatefile, string_camelcase
 from scrapy.exceptions import UsageError
 
-
+# 自动重命名模块名
 def sanitize_module_name(module_name):
     """Sanitize the given module name, by replacing dashes and points
     with underscores and prefixing it with a letter if it doesn't start
@@ -35,6 +35,7 @@ class Command(ScrapyCommand):
     def short_desc(self):
         return "Generate new spider using pre-defined templates"
 
+    # --force表示覆盖掉以前的spider
     def add_options(self, parser):
         ScrapyCommand.add_options(self, parser)
         parser.add_option("-l", "--list", dest="list", action="store_true",
@@ -63,7 +64,8 @@ class Command(ScrapyCommand):
 
         name, domain = args[0:2]
         module = sanitize_module_name(name)
-
+        
+        # 爬虫名字不能与项目名字相同
         if self.settings.get('BOT_NAME') == module:
             print("Cannot create a spider with the same name as your project")
             return
@@ -83,7 +85,8 @@ class Command(ScrapyCommand):
             self._genspider(module, name, domain, opts.template, template_file)
             if opts.edit:
                 self.exitcode = os.system('scrapy edit "%s"' % name)
-
+    
+    # 根据给定的模板信息生成spider爬虫文件
     def _genspider(self, module, name, domain, template_name, template_file):
         """Generate the spider module, based on the given template"""
         tvars = {
@@ -102,6 +105,7 @@ class Command(ScrapyCommand):
             spiders_module = None
             spiders_dir = "."
         spider_file = "%s.py" % join(spiders_dir, module)
+        # 从元template_file复制到spider_file文件去
         shutil.copyfile(template_file, spider_file)
         render_templatefile(spider_file, **tvars)
         print("Created spider %r using template %r " % (name, \
@@ -109,6 +113,7 @@ class Command(ScrapyCommand):
         if spiders_module:
             print("in module:\n  %s.%s" % (spiders_module.__name__, module))
 
+    # 在指定位置查找相应模板
     def _find_template(self, template):
         template_file = join(self.templates_dir, '%s.tmpl' % template)
         if exists(template_file):
@@ -116,12 +121,14 @@ class Command(ScrapyCommand):
         print("Unable to find template: %s\n" % template)
         print('Use "scrapy genspider --list" to see all available templates.')
 
+    # 显示所有可用的spider模板，模板存放在templates\spiders路径下，以.tmpl结尾
     def _list_templates(self):
         print("Available templates:")
         for filename in sorted(os.listdir(self.templates_dir)):
             if filename.endswith('.tmpl'):
                 print("  %s" % splitext(filename)[0])
 
+    # 如果TEMPLATES_DIR的值为空，那么_templates_base_dir就是scrapy的path与templates拼接成的路径。
     @property
     def templates_dir(self):
         _templates_base_dir = self.settings['TEMPLATES_DIR'] or \
