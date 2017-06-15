@@ -23,9 +23,10 @@ TEMPLATES_TO_RENDER = (
 
 IGNORE = ignore_patterns('*.pyc', '.svn')
 
-# 创建项目(常用)
+# 创建项目
 class Command(ScrapyCommand):
 
+    # 是否需要项目才能运行
     requires_project = False
     default_settings = {'LOG_ENABLED': False,
                         'SPIDER_LOADER_WARN_ONLY': True}
@@ -35,7 +36,8 @@ class Command(ScrapyCommand):
 
     def short_desc(self):
         return "Create new project"
-
+    
+    # 判断项目名是不是有效的
     def _is_valid_name(self, project_name):
         def _module_exists(module_name):
             try:
@@ -43,10 +45,13 @@ class Command(ScrapyCommand):
                 return True
             except ImportError:
                 return False
-
+                
+        # 项目名只能是数字字母下划线
         if not re.search(r'^[_a-zA-Z]\w*$', project_name):
             print('Error: Project names must begin with a letter and contain'\
                     ' only\nletters, numbers and underscores')
+        
+        # 项目名没被使用过
         elif _module_exists(project_name):
             print('Error: Module %r already exists' % project_name)
         else:

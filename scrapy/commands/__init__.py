@@ -12,7 +12,7 @@ from scrapy.exceptions import UsageError
 # 所有Scrapy命令类的基类,一切命令都是从这个模块开始的
 class ScrapyCommand(object):
 	
-    # 定义此命令是否需要项目才能运行
+    # 是否需要项目才能运行
     requires_project = False
 
     # TODO 未知
