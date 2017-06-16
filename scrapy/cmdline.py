@@ -95,10 +95,12 @@ def _run_print_help(parser, func, *a, **kw):
         sys.exit(2)
 
 def execute(argv=None, settings=None):
+    # 获取变量 
     if argv is None:
         argv = sys.argv
 
     # --- backwards compatibility for scrapy.conf.settings singleton ---
+    # 获取配置(settings)
     if settings is None and 'scrapy.conf' in sys.modules:
         from scrapy import conf
         if hasattr(conf, 'settings'):
@@ -145,6 +147,7 @@ def execute(argv=None, settings=None):
     opts, args = parser.parse_args(args=argv[1:])
     _run_print_help(parser, cmd.process_options, args, opts)
 
+    # 设定用于启动爬取CrawlerProcess的配置
     cmd.crawler_process = CrawlerProcess(settings)
     _run_print_help(parser, _run_command, cmd, args, opts)
     sys.exit(cmd.exitcode)
@@ -164,5 +167,7 @@ def _run_command_profiled(cmd, args, opts):
     if opts.profile:
         p.dump_stats(opts.profile)
 
+
+# 程序的入口函数
 if __name__ == '__main__':
     execute()

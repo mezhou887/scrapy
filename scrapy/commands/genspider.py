@@ -23,7 +23,7 @@ def sanitize_module_name(module_name):
         module_name = "a" + module_name
     return module_name
 
-# 构建爬虫
+# 构建爬虫spider文件的
 class Command(ScrapyCommand):
 
     requires_project = False
@@ -35,6 +35,9 @@ class Command(ScrapyCommand):
     def short_desc(self):
         return "Generate new spider using pre-defined templates"
 
+	  # 执行scrapy genspider可以查看该命令
+    # --list表示显示所有可用的模板
+    # --template表示使用指定模板，默认是basic类型的模板
     # --force表示覆盖掉以前的spider
     def add_options(self, parser):
         ScrapyCommand.add_options(self, parser)

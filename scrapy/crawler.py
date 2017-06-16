@@ -23,7 +23,7 @@ from scrapy import signals
 
 logger = logging.getLogger(__name__)
 
-
+# ºËÐÄAPI
 class Crawler(object):
 
     def __init__(self, spidercls, settings=None):
