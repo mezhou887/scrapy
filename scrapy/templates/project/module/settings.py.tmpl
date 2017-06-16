@@ -52,6 +52,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
+# 要激活下载器中间件组件，需打开以下内容: DOWNLOADER_MIDDLEWARES
+# DOWNLOADER_MIDDLEWARES_BASE配置在/scrapy/settings/default_settings.py文件下面
+# 这两个会设置合并，而后根据顺序(order)进行排序，最后得到启用中间件的有序列表: 第一个中间件是最靠近引擎的，最后一个中间件是最靠近下载器的。
+# 禁止内置的中间件: 在项目的 DOWNLOADER_MIDDLEWARES 设置中定义该中间件，并将其值赋为None,如: 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None
 #DOWNLOADER_MIDDLEWARES = {
 #    '$project_name.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
