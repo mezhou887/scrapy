@@ -90,6 +90,7 @@ DOWNLOADER_CLIENT_TLS_METHOD = 'TLS' # Use highest TLS/SSL protocol version supp
 
 DOWNLOADER_MIDDLEWARES = {}
 
+# 第一个中间件是最靠近引擎的，最后一个中间件是最靠近下载器的。
 DOWNLOADER_MIDDLEWARES_BASE = {
     # Engine side
     'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': 100,

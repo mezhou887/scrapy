@@ -6,7 +6,7 @@ See documentation in docs/topics/downloader-middleware.rst
 
 from scrapy.utils.python import without_none_values
 
-
+# 设置DEFAULT_REQUEST_HEADERS指定的默认request header。
 class DefaultHeadersMiddleware(object):
 
     def __init__(self, headers):

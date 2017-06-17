@@ -8,7 +8,7 @@ from w3lib.http import basic_auth_header
 
 from scrapy import signals
 
-
+# 完成某些使用 Basic access authentication (或者叫HTTP认证)的spider生成的请求的认证过程。
 class HttpAuthMiddleware(object):
     """Set Basic HTTP Authorization header
     (http_user and http_pass spider class attributes)"""

@@ -26,7 +26,7 @@ from scrapy.utils.python import global_object_name
 
 logger = logging.getLogger(__name__)
 
-
+# 将重试可能由于临时的问题，例如连接超时或者HTTP 500错误导致失败的页面。
 class RetryMiddleware(object):
 
     # IOError is raised by the HttpCompression middleware when trying to

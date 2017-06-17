@@ -11,7 +11,7 @@ from scrapy.utils.httpobj import urlparse_cached
 from scrapy.exceptions import NotConfigured
 from scrapy.utils.python import to_bytes
 
-
+# 提供了对request设置HTTP代理的支持。
 class HttpProxyMiddleware(object):
 
     def __init__(self, auth_encoding='latin-1'):

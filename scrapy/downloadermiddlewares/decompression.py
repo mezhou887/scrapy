@@ -20,7 +20,7 @@ from scrapy.responsetypes import responsetypes
 
 logger = logging.getLogger(__name__)
 
-
+# 没有用到，不管
 class DecompressionMiddleware(object):
     """ This middleware tries to recognise and extract the possibly compressed
     responses that may arrive. """

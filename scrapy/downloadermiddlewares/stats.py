@@ -3,7 +3,7 @@ from scrapy.utils.request import request_httprepr
 from scrapy.utils.response import response_httprepr
 from scrapy.utils.python import global_object_name
 
-
+# 保存所有通过的request、response及exception的中间件。
 class DownloaderStats(object):
 
     def __init__(self, stats):

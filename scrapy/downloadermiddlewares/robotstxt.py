@@ -17,7 +17,7 @@ from scrapy.utils.python import to_native_str
 
 logger = logging.getLogger(__name__)
 
-
+# 过滤所有robots.txt eclusion standard中禁止的request。
 class RobotsTxtMiddleware(object):
     DOWNLOAD_PRIORITY = 1000
 

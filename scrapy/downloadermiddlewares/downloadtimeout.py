@@ -6,7 +6,7 @@ See documentation in docs/topics/downloader-middleware.rst
 
 from scrapy import signals
 
-
+# 设置DOWNLOAD_TIMEOUT指定的request下载超时时间.
 class DownloadTimeoutMiddleware(object):
 
     def __init__(self, timeout=180):

@@ -8,7 +8,7 @@ warnings.warn("Module `scrapy.downloadermiddlewares.chunked` is deprecated, "
               "chunked transfers are supported by default.",
               ScrapyDeprecationWarning, stacklevel=2)
 
-
+# 添加了对 chunked transfer encoding 的支持。
 class ChunkedTransferMiddleware(object):
     """This middleware adds support for chunked transfer encoding, as
     documented in: http://en.wikipedia.org/wiki/Chunked_transfer_encoding

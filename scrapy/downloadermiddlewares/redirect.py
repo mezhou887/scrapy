@@ -51,7 +51,7 @@ class BaseRedirectMiddleware(object):
         redirected.headers.pop('Content-Length', None)
         return redirected
 
-
+# 根据response的状态处理重定向的request。
 class RedirectMiddleware(BaseRedirectMiddleware):
     """
     Handle redirection of requests based on response status
@@ -79,7 +79,7 @@ class RedirectMiddleware(BaseRedirectMiddleware):
         redirected = self._redirect_request_using_get(request, redirected_url)
         return self._redirect(redirected, request, spider, response.status)
 
-
+# 根据meta-refresh html标签处理request重定向
 class MetaRefreshMiddleware(BaseRedirectMiddleware):
 
     enabled_setting = 'METAREFRESH_ENABLED'

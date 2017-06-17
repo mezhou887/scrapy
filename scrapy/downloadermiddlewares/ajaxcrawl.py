@@ -12,7 +12,7 @@ from scrapy.http import HtmlResponse
 
 logger = logging.getLogger(__name__)
 
-
+# 根据meta-fragment html标签查找 ‘AJAX可爬取’ 页面的中间件。
 class AjaxCrawlMiddleware(object):
     """
     Handle 'AJAX crawlable' pages marked as crawlable via meta tag.

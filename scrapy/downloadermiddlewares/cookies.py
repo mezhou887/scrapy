@@ -10,7 +10,8 @@ from scrapy.utils.python import to_native_str
 
 logger = logging.getLogger(__name__)
 
-
+# 可以通过COOKIES_ENABLED 控制 CookiesMiddleware 开启或关闭
+# 使爬取需要cookie(例如使用session)的网站成为了可能。
 class CookiesMiddleware(object):
     """This middleware enables working with sites that need cookies"""
 
@@ -20,9 +21,9 @@ class CookiesMiddleware(object):
 
     @classmethod
     def from_crawler(cls, crawler):
-        if not crawler.settings.getbool('COOKIES_ENABLED'):
+        if not crawler.settings.getbool('COOKIES_ENABLED'): # 是否启用cookies middleware。如果关闭，cookies将不会发送给web server。
             raise NotConfigured
-        return cls(crawler.settings.getbool('COOKIES_DEBUG'))
+        return cls(crawler.settings.getbool('COOKIES_DEBUG')) # 如果启用，Scrapy将记录所有在request(Cookie 请求头)发送的cookies及response接收到的cookies(Set-Cookie 接收头)。
 
     def process_request(self, request, spider):
         if request.meta.get('dont_merge_cookies', False):

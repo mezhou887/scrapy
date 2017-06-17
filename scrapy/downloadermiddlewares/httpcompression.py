@@ -14,7 +14,7 @@ try:
 except ImportError:
     pass
 
-
+# 提供了对压缩(gzip, deflate)数据的支持。
 class HttpCompressionMiddleware(object):
     """This middleware allows compressed (gzip, deflate) traffic to be
     sent/received from web sites"""

@@ -3,6 +3,7 @@
 import random
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
+# settings.py中配置中间件
 # DOWNLOADER_MIDDLEWARES = {                                             
 #     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 #     'scrapy.downloadermiddlewares.rotateuseragent.RotateUserAgentMiddleware': 543,                
