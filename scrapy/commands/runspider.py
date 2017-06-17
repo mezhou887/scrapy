@@ -9,7 +9,7 @@ from scrapy.exceptions import UsageError
 from scrapy.utils.conf import arglist_to_dict
 from scrapy.utils.python import without_none_values
 
-
+# 从爬虫中查找所有的依赖包
 def _import_file(filepath):
     abspath = os.path.abspath(filepath)
     dirname, file = os.path.split(abspath)
@@ -25,9 +25,11 @@ def _import_file(filepath):
             sys.path.pop(0)
     return module
 
-
+# 将一个spider当作一个python文件去执行，不用创建一个完整的项目
 class Command(ScrapyCommand):
-
+	
+	
+    # 定义这个方法不需要项目就可以运行
     requires_project = False
     default_settings = {'SPIDER_LOADER_WARN_ONLY': True}
 
@@ -81,10 +83,12 @@ class Command(ScrapyCommand):
             module = _import_file(filename)
         except (ImportError, ValueError) as e:
             raise UsageError("Unable to load %r: %s\n" % (filename, e))
+        # 判断输入的爬虫是否存在
         spclasses = list(iter_spider_classes(module))
         if not spclasses:
             raise UsageError("No spider found in file: %s\n" % filename)
         spidercls = spclasses.pop()
 
+        # 用crawler_process(即实例化的CrawlerProcess）调用crawler.py的CrawlerProcess。(重点)
         self.crawler_process.crawl(spidercls, **opts.spargs)
         self.crawler_process.start()

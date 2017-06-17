@@ -3,6 +3,7 @@
 from scrapy import signals
 
 
+# 动态设置User-Agent,该值来源于setting.py文件中的USER_AGENT配置项
 class UserAgentMiddleware(object):
     """This middleware allows spiders to override the user_agent"""
 
