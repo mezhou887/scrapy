@@ -1,0 +1,7 @@
+为了方便使用XPaths, Scrapy提供Selector类，有三种方法：
+	xpath()：返回selectors列表, 每一个select表示一个xpath参数表达式选择的节点.
+	extract()：返回一个unicode字符串，该字符串为XPath选择器返回的数据
+	re()： 返回unicode字符串列表，字符串作为参数由正则表达式提取出来
+
+item['headTitle'] = sel.xpath('/html/head/title/text()').extract()#观察网页对应得html源码
+	

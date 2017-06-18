@@ -84,11 +84,12 @@ class Command(ScrapyCommand):
             if opts.edit:
                 self.exitcode = os.system('scrapy edit "%s"' % name)
 
+    # tvarts这个是模板参数
     def _genspider(self, module, name, domain, template_name, template_file):
         """Generate the spider module, based on the given template"""
         tvars = {
-            'project_name': self.settings.get('BOT_NAME'),
-            'ProjectName': string_camelcase(self.settings.get('BOT_NAME')),
+            'project_name': self.settings.get('BOT_NAME'),                     # ${project_name}
+            'ProjectName': string_camelcase(self.settings.get('BOT_NAME')),    # ${ProjectName}
             'module': module,
             'name': name,
             'domain': domain,

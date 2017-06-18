@@ -1,0 +1,5 @@
+Rule(SgmlLinkExtractor(allow=('sitehome/p/[0-9]+', ),)),
+Rule(SgmlLinkExtractor(allow=('[^s]+/p/', )), callback='parse_item'),
+Rule(SgmlLinkExtractor(allow=('huhuuu/default.html?page=([w]+)', ),)), # 提取匹配 huhuuu/default.html?page=([w]+) 的链接并跟进链接(没有callback意味着follow默认为True)
+Rule(SgmlLinkExtractor(allow=('huhuuu/p/', )), callback='parse_item'), # 提取匹配 'huhuuu/p/' 的链接并使用spider的parse_item方法进行分析
+Rule(SgmlLinkExtractor(allow=('huhuuu/archive/', )), callback='parse_item'),
